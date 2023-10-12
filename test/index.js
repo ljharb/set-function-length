@@ -8,7 +8,7 @@ var gOPD = require('gopd');
 var functionsHaveConfigurableLengths = true;
 if (gOPD) {
 	var desc = gOPD(function f() {}, 'length');
-	if (!desc.configurable) {
+	if (desc && !desc.configurable) {
 		functionsHaveConfigurableLengths = false;
 	}
 }
@@ -18,14 +18,20 @@ var setFunctionLength = require('../');
 test('set function length', function (t) {
 	forEach(v.nonFunctions, function (nonFunction) {
 		t['throws'](
+			// @ts-expect-error
 			function () { setFunctionLength(nonFunction); },
 			TypeError,
 			inspect(nonFunction) + ' is not a function'
 		);
 	});
 
-	forEach(v.nonNumbers.concat(v.nonIntegerNumbers, 0xFFFFFFFF + 1), function (nonInteger) {
+	forEach(/** @type {unknown[]} */ ([]).concat(
+		v.nonNumbers,
+		v.nonIntegerNumbers,
+		0xFFFFFFFF + 1
+	), function (nonInteger) {
 		t['throws'](
+			// @ts-expect-error
 			function () { setFunctionLength(nonInteger); },
 			TypeError,
 			inspect(nonInteger) + ' is not an integer in the proper range'
@@ -33,7 +39,7 @@ test('set function length', function (t) {
 	});
 
 	t.test('setting the length', { skip: !functionsHaveConfigurableLengths }, function (st) {
-		forEach([].concat(
+		forEach(/** @type {Parameters<setFunctionLength>[0][]} */ ([]).concat(
 			function zero() {},
 			function one(_) {}, // eslint-disable-line no-unused-vars
 			function two(_, __) {} // eslint-disable-line no-unused-vars
@@ -55,7 +61,7 @@ test('set function length', function (t) {
 	});
 
 	t.test('setting the length loosely', function (st) {
-		forEach([].concat(
+		forEach(/** @type {Parameters<setFunctionLength>[0][]} */ ([]).concat(
 			function zero() {},
 			function one(_) {}, // eslint-disable-line no-unused-vars
 			function two(_, __) {} // eslint-disable-line no-unused-vars
@@ -79,9 +85,11 @@ test('set function length', function (t) {
 	});
 
 	t.test('functions with a deleted length', { skip: !functionsHaveConfigurableLengths }, function (st) {
+		// @ts-expect-error
 		var f = function g(_) {}; // eslint-disable-line no-unused-vars
 		st.equal(f.length, 1, 'initial function length is 1');
 
+		// @ts-expect-error
 		delete f.length;
 
 		st.equal(f.length, 0, 'function with deleted length is 0');

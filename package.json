@@ -1,0 +1,30 @@
+{
+	"name": "set-function-length",
+	"version": "0.0.0",
+	"description": "Set a function's length property",
+	"main": "index.js",
+	"exports": {
+		".": "./index.js",
+		"./package.json": "./package.json"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ljharb/set-function-length.git"
+	},
+	"keywords": [
+		"javascript",
+		"ecmascript",
+		"set",
+		"function",
+		"length"
+	],
+	"author": "Jordan Harband <ljharb@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ljharb/set-function-length/issues"
+	},
+	"homepage": "https://github.com/ljharb/set-function-length#readme"
+}

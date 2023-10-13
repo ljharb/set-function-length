@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"exports": {
 		".": "./index.js",
+		"./env": "./env.js",
 		"./package.json": "./package.json"
 	},
 	"directories": {

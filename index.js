@@ -19,14 +19,18 @@ module.exports = function setFunctionLength(fn, length) {
 	var loose = arguments.length > 2 && !!arguments[2];
 
 	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
 	if ('length' in fn && gOPD) {
 		var desc = gOPD(fn, 'length');
 		if (desc && !desc.configurable) {
 			functionLengthIsConfigurable = false;
 		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
 	}
 
-	if (functionLengthIsConfigurable || !loose) {
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
 		if (hasDescriptors) {
 			define(fn, 'length', length, true, true);
 		} else {

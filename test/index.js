@@ -6,10 +6,14 @@ var inspect = require('object-inspect');
 var v = require('es-value-fixtures');
 var gOPD = require('gopd');
 var functionsHaveConfigurableLengths = true;
+var functionsHaveWritableLengths = true;
 if (gOPD) {
 	var desc = gOPD(function f() {}, 'length');
 	if (!desc.configurable) {
 		functionsHaveConfigurableLengths = false;
+	}
+	if (!desc.writable) {
+		functionsHaveWritableLengths = false;
 	}
 }
 
@@ -32,7 +36,7 @@ test('set function length', function (t) {
 		);
 	});
 
-	t.test('setting the length', { skip: !functionsHaveConfigurableLengths }, function (st) {
+	t.test('setting the length', { skip: !functionsHaveConfigurableLengths && !functionsHaveWritableLengths }, function (st) {
 		forEach([].concat(
 			function zero() {},
 			function one(_) {}, // eslint-disable-line no-unused-vars
@@ -65,12 +69,12 @@ test('set function length', function (t) {
 			var msg = inspect(fn) + ': returns it (' + Function.prototype.toString.call(fn) + ')';
 			st.equal(setFunctionLength(fn, 42, true), fn, msg);
 
-			var msg2 = functionsHaveConfigurableLengths
+			var msg2 = (functionsHaveConfigurableLengths || functionsHaveWritableLengths)
 				? inspect(fn) + ': loosely changes ' + inspect(origLength) + ' to ' + inspect(42)
 				: inspect(fn) + ': loosely noops and keeps ' + inspect(origLength);
 			st.equal(
 				fn.length,
-				functionsHaveConfigurableLengths ? 42 : origLength,
+				(functionsHaveConfigurableLengths || functionsHaveWritableLengths) ? 42 : origLength,
 				msg2
 			);
 		});

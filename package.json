@@ -1,6 +1,6 @@
 {
 	"name": "set-function-length",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "Set a function's length property",
 	"main": "index.js",
 	"directories": {

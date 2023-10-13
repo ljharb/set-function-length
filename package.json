@@ -3,6 +3,10 @@
 	"version": "1.0.0",
 	"description": "Set a function's length property",
 	"main": "index.js",
+	"exports": {
+		".": "./index.js",
+		"./package.json": "./package.json"
+	},
 	"directories": {
 		"test": "test"
 	},

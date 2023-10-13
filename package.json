@@ -53,6 +53,7 @@
 	},
 	"dependencies": {
 		"define-data-property": "^1.1.0",
+		"get-intrinsic": "^1.2.1",
 		"gopd": "^1.0.1",
 		"has-property-descriptors": "^1.0.0"
 	},

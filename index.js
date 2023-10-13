@@ -1,11 +1,12 @@
 'use strict';
 
+var GetIntrinsic = require('get-intrinsic');
 var define = require('define-data-property');
 var hasDescriptors = require('has-property-descriptors')();
 var gOPD = require('gopd');
 
-var $TypeError = TypeError;
-var $floor = Math.floor;
+var $TypeError = GetIntrinsic('%TypeError%');
+var $floor = GetIntrinsic('%Math.floor%');
 
 module.exports = function setFunctionLength(fn, length) {
 	if (typeof fn !== 'function') {

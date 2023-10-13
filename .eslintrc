@@ -5,6 +5,11 @@
 
 	"rules": {
 		"id-length": "off",
+		"new-cap": ["error", {
+			"capIsNewExceptions": [
+				"GetIntrinsic"
+			],
+		}],
 		"no-extra-parens": "off",
 	},
 

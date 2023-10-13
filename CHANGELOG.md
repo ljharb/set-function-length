@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.0.1](https://github.com/ljharb/set-function-length/compare/v1.0.0...v1.0.1) - 2023-10-12
+
+### Commits
+
+- [Refactor] use `get-intrinsic`, since it‘s in the dep graph anyways [`278a954`](https://github.com/ljharb/set-function-length/commit/278a954a06cd849051c569ff7aee56df6798933e)
+- [meta] add `exports` [`72acfe5`](https://github.com/ljharb/set-function-length/commit/72acfe5a0310071fb205a72caba5ecbab24336a0)
+
 ## v1.0.0 - 2023-10-12
 
 ### Commits

@@ -1,6 +1,6 @@
 {
 	"name": "set-function-length",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Set a function's length property",
 	"main": "index.js",
 	"exports": {

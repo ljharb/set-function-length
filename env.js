@@ -1,14 +1,18 @@
 'use strict';
 
 var gOPD = require('gopd');
+var bind = require('function-bind');
 
-var functionsHaveConfigurableLengths = gOPD && gOPD(function () {}, 'length').configurable;
+var unbound = gOPD && gOPD(function () {}, 'length');
+var bound = gOPD && gOPD(bind.call(function () {}), 'length');
 
-var functionsHaveWritableLengths = gOPD && gOPD(function () {}, 'length').writable;
+var functionsHaveConfigurableLengths = !!(unbound && unbound.configurable);
 
-var boundFnsHaveConfigurableLengths = gOPD && gOPD(function () {}.bind(), 'length').configurable;
+var functionsHaveWritableLengths = !!(unbound && unbound.writable);
 
-var boundFnsHaveWritableLengths = gOPD && gOPD(function () {}.bind(), 'length').writable;
+var boundFnsHaveConfigurableLengths = !!(bound && bound.configurable);
+
+var boundFnsHaveWritableLengths = !!(bound && bound.writable);
 
 module.exports = {
 	__proto__: null,

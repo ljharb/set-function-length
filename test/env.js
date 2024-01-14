@@ -10,6 +10,7 @@ test('functionsHaveConfigurableLengths', function (t) {
 	var fn = function f() {};
 
 	t.test('yes', { skip: !env.functionsHaveConfigurableLengths }, function (st) {
+		// @ts-expect-error ts(2532) all functions have a length if they have configurable lengths
 		st.equal(gOPD(fn, 'length').configurable, true, 'function length is configurable');
 
 		st.end();
@@ -21,6 +22,7 @@ test('functionsHaveConfigurableLengths', function (t) {
 				if (gOPD && !env.functionsHaveWritableLengths) {
 					Object.defineProperty(fn, 'length', { value: 42 });
 				} else {
+					// @ts-expect-error ts(2704) in this code path, length is deletable
 					delete fn.length;
 				}
 			},
@@ -37,6 +39,7 @@ test('functionsHaveWritableLengths', function (t) {
 	var fn = function f() {};
 
 	t.test('yes', { skip: !env.functionsHaveWritableLengths }, function (st) {
+		// @ts-expect-error ts(2532) all functions have a length if they have writable lengths
 		st.equal(gOPD(fn, 'length').writable, true, 'function length is writable');
 
 		st.end();
@@ -45,6 +48,7 @@ test('functionsHaveWritableLengths', function (t) {
 	t.test('no', { skip: env.functionsHaveWritableLengths }, function (st) {
 		st['throws'](
 			function () {
+				// @ts-expect-error ts(2704) in this code path, length is deletable
 				fn.length = 42;
 			},
 			TypeError,
@@ -60,6 +64,7 @@ test('boundFnsHaveConfigurableLengths', function (t) {
 	var fn = callBind(function f() {});
 
 	t.test('yes', { skip: !env.boundFnsHaveConfigurableLengths }, function (st) {
+		// @ts-expect-error ts(2532) all functions have a length if they have configurable lengths
 		st.equal(gOPD(fn, 'length').configurable, true, 'bound function length is configurable');
 
 		st.end();
@@ -71,6 +76,7 @@ test('boundFnsHaveConfigurableLengths', function (t) {
 				if (gOPD) {
 					Object.defineProperty(fn, 'length', { value: 42 });
 				} else {
+					// @ts-expect-error ts(2704) in this code path, length is deletable
 					delete fn.length;
 				}
 			},
@@ -87,6 +93,7 @@ test('boundFnsHaveWritableLengths', function (t) {
 	var fn = callBind(function f() {});
 
 	t.test('yes', { skip: !env.boundFnsHaveWritableLengths }, function (st) {
+		// @ts-expect-error ts(2532) all functions have a length if they have writable lengths
 		st.equal(gOPD(fn, 'length').writable, true, 'bound function length is writable');
 
 		st.end();
@@ -95,6 +102,7 @@ test('boundFnsHaveWritableLengths', function (t) {
 	t.test('no', { skip: env.boundFnsHaveWritableLengths }, function (st) {
 		st['throws'](
 			function () {
+				// @ts-expect-error ts(2540) in this code path, length is writable
 				fn.length = 42;
 			},
 			TypeError,

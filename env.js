@@ -4,6 +4,7 @@ var gOPD = require('gopd');
 var bind = require('function-bind');
 
 var unbound = gOPD && gOPD(function () {}, 'length');
+// @ts-expect-error ts(2555) TS is overly strict with .call
 var bound = gOPD && gOPD(bind.call(function () {}), 'length');
 
 var functionsHaveConfigurableLengths = !!(unbound && unbound.configurable);

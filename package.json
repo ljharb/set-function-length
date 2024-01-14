@@ -60,9 +60,9 @@
 	},
 	"dependencies": {
 		"define-data-property": "^1.1.1",
-		"get-intrinsic": "^1.2.1",
+		"get-intrinsic": "^1.2.2",
 		"gopd": "^1.0.1",
-		"has-property-descriptors": "^1.0.0"
+		"has-property-descriptors": "^1.0.1"
 	},
 	"engines": {
 		"node": ">= 0.4"

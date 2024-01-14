@@ -8,6 +8,7 @@
 		"./env": "./env.js",
 		"./package.json": "./package.json"
 	},
+	"sideEffects": false,
 	"directories": {
 		"test": "test"
 	},

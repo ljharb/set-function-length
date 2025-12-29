@@ -52,5 +52,5 @@ assert.equal(two.length, 12);
 [downloads-url]: https://npm-stat.com/charts.html?package=set-function-length
 [codecov-image]: https://codecov.io/gh/ljharb/set-function-length/branch/main/graphs/badge.svg
 [codecov-url]: https://app.codecov.io/gh/ljharb/set-function-length/
-[actions-image]: https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/ljharb/set-function-length
+[actions-image]: https://img.shields.io/github/check-runs/ljharb/set-function-length/main
 [actions-url]: https://github.com/ljharb/set-function-length/actions
